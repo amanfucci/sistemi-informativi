@@ -1,0 +1,204 @@
+\documentclass[english, aspectratio=169, final]{beamer}
+\usepackage[english]{babel}
+\usepackage{ragged2e}
+\usepackage{ifthen}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{
+  backgrounds,
+  arrows,
+  arrows.meta,
+  shapes,
+  shapes.geometric,
+  shapes.misc,
+  decorations.pathmorphing,
+  decorations.markings
+}
+\usepackage{tikzit}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{bbm}
+\usepackage[ruled,noend,vlined]{algorithm2e}
+\usepackage{mathtools}
+\usepackage{xcolor}
+\usepackage{doi}
+\usepackage{pgfplots}
+\usepackage{stackengine}
+\stackMath{}
+\pgfplotsset{compat=1.9}
+\usepgfplotslibrary{external}
+\tikzexternalize[prefix=./build_tikz/]
+\tikzset{external/only named=true}
+\input{../graphs.tikzstyles}
+\input{../graphs.tikzdefs}
+\apptocmd{\frame}{}{\justifying}{}
+\newcommand{\itemj}{\item \justifying}
+\newcommand{\reaches}{\rightsquigarrow}
+\renewcommand{\path}{,\ldots,}
+\newcommand{\ureaches}{\leftrightsquigarrow}
+\newcommand{\reached}{\leftsquigarrow}
+\renewcommand{\implies}{\Rightarrow}
+\newcommand{\impliesq}{\stackrel{?}{\implies}}
+\newcommand{\implied}{\Leftarrow}
+\newcommand{\impliedq}{\stackrel{?}{\implied}}
+\renewcommand{\iff}{\Leftrightarrow}
+\newcommand{\iffq}{\stackrel{?}{\iff}}
+\newcommand{\iffdef}{\stackrel{\text{def}}{\iff}}
+\renewcommand{\to}{\rightarrow}
+\newcommand{\toq}{\stackrel{?}{\to}}
+\newcommand{\from}{\leftarrow}
+\newcommand{\fromq}{\stackrel{?}{\from}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\eqq}{\stackrel{?}{=}}
+\newcommand{\inq}{\stackrel{?}{\in}}
+\newcommand{\eqd}{\vcentcolon=}
+\newcommand{\pluseq}{\mathrel{+}=}
+\newcommand{\asteq}{\mathrel{*}=}
+\newcommand{\minuseq}{\mathrel{-}=}
+\newcommand{\expm}{e\!-\!}
+\newcommand{\expp}{e\!+\!}
+\newcommand{\impliesnotimplied}{\stackanchor{\implies}{\not\implied}}
+\newcommand{\impliednotimplies}{\stackanchor{\not\implies}{\implied}}
+\newcommand{\loc}{\text{loc}}
+\newcommand{\glob}{\text{glob}}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\adjin}{adj_{in}}
+\DeclareMathOperator{\adjout}{adj_{out}}
+\DeclareMathOperator{\degin}{deg_{in}}
+\DeclareMathOperator{\degout}{deg_{out}}
+\DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\Ber}{Ber}
+\DeclareMathOperator{\Uni}{Uni}
+\DeclareMathOperator{\enqueue}{enqueue}
+\DeclareMathOperator{\dequeue}{dequeue}
+\DeclareMathOperator{\size}{size}
+\DeclareMathOperator{\push}{push}
+\DeclareMathOperator{\pop}{pop}
+\DeclareMathOperator{\Init}{Init}
+\DeclareMathOperator{\Decrease}{Decrease}
+\DeclareMathOperator{\Increase}{Increase}
+\DeclareMathOperator{\Acc}{Acc}
+\DeclareMathOperator{\Distance}{Distance}
+\DeclareMathOperator{\polylog}{polylog}
+
+\newcommand{\kwangles}[1]{
+  $\mathord{\langle}\text{#1}\mathord{\rangle}$%
+}
+
+\graphicspath{ {../images/} }
+
+% Style
+\definecolor{red}{rgb}{0.796, 0.055, 0.173} % primary
+\definecolor{grey}{rgb}{0.3686, 0.5255, 0.6235} % secondary
+\setbeamercolor{palette primary}{bg=red,fg=white}
+\setbeamercolor{palette secondary}{bg=red,fg=white}
+\setbeamercolor{palette tertiary}{bg=red,fg=white}
+\setbeamercolor{palette quaternary}{bg=red,fg=white}
+\setbeamercolor{structure}{fg=red}
+\setbeamercolor{bibliography item}{fg=red}
+\setbeamercolor{bibliography entry author}{fg=black}
+\setbeamercolor{bibliography entry title}{fg=black}
+\setbeamercolor{bibliography entry location}{fg=black}
+\setbeamercolor{bibliography entry note}{fg=black}
+\bibliographystyle{plain}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{bibliography item}{[\theenumiv]}
+\setbeamertemplate{section in toc}[circle]
+\setbeamertemplate{subsection in toc}[ball unnumbered]
+\setbeamertemplate{headline}
+{
+    \leavevmode
+    \hbox{
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex]{palette quaternary}
+    \insertsectionnavigationhorizontal{\paperwidth}{}{\hskip0pt plus1filll}
+    \end{beamercolorbox}
+    }
+}
+\setbeamertemplate{footline}
+{
+    \leavevmode
+    \hbox{
+    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.6ex,dp=1ex,center]{palette quaternary}
+    \usebeamerfont{author in head/foot}\insertshortauthor\hspace*{1ex}
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.6ex,dp=1ex,center]{palette quaternary}
+    \usebeamerfont{institute in head/foot}\insertshortinstitute\
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.6ex,dp=1ex,center]{palette quaternary}
+    \insertframenumber{} / \inserttotalframenumber\
+    \end{beamercolorbox}}
+    \vskip0pt
+}
+\newcommand{\customToC}[2]
+{
+    \begin{frame}[noframenumbering]{Overview}
+        \begin{multicols}{2}
+            \tableofcontents[#1,#2]
+        \end{multicols}
+    \end{frame}
+}
+\newcommand{\sectiontitle}{}
+\newcommand{\subsectiontitle}{}
+\setlength{\tabcolsep}{2pt}
+
+\title{Title}
+\subtitle{Subtitle}
+\author{Authors}
+\date{Day Month Year}
+\institute{Università degli studi di Trento}
+\titlegraphic{\includegraphics[width=4cm]{marchio_unitrento_colore_it_202002.eps}}
+
+\begin{document}
+\SetKw{KwBreak}{break}
+\SetKw{KwNew}{new}
+\SetKwData{TyQueue}{Queue}
+\SetKwData{TyPriorityQueue}{PriorityQueue}
+\SetKwData{TyStack}{Stack}
+\SetKwData{TySet}{Set}
+\SetKwData{tyint}{int}
+\SetKwData{tyfloat}{float}
+\SetKwData{tybool}{bool}
+\small
+
+% Title Frame
+\begin{frame}[noframenumbering]
+    \centering
+    \vspace{1cm}
+    {\color{red} \Large \inserttitle\par}
+    \vspace{0.25cm}
+    {\color{red} \normalsize \insertsubtitle\par}
+    \vspace{1cm}
+    {\normalsize \insertauthor\par}
+    \vspace{1cm}
+    {\small \insertdate\par}
+    \vspace{0.5cm}
+    {\inserttitlegraphic\par}
+    \vspace{1cm}
+\end{frame}
+
+% TOC Frame
+\customToC{}{}
+\setbeamercovered{invisible}
+
+% Section
+\renewcommand{\sectiontitle}{Introduction}
+\section[Intro]{\sectiontitle}
+% \customToC{currentsection,hideothersubsections}{}
+
+% Frame
+\begin{frame}[t]{\sectiontitle}
+    \begin{itemize}
+        \itemj{}Progetto di Sistemi Informativi
+    \end{itemize}
+\end{frame}
+
+% Bibliography
+\section[Refs]{References}
+\begin{frame}[t, allowframebreaks, noframenumbering]
+\frametitle{References}
+\bibliography{biblio}
+\end{frame}
+
+\end{document}

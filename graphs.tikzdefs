@@ -1,0 +1,10 @@
+\usetikzlibrary{
+  backgrounds,
+  arrows,
+  arrows.meta,
+  shapes,
+  shapes.geometric,
+  shapes.misc,
+  decorations.pathmorphing,
+  decorations.markings
+}

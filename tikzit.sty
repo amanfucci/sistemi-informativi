@@ -1,0 +1,30 @@
+\pgfkeys{/tikz/tikzit fill/.initial=0}
+\pgfkeys{/tikz/tikzit draw/.initial=0}
+\pgfkeys{/tikz/tikzit shape/.initial=0}
+\pgfkeys{/tikz/tikzit category/.initial=0}
+
+% standard layers used in .tikz files
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{edgelayer}
+\pgfdeclarelayer{nodelayer}
+\pgfsetlayers{background,edgelayer,nodelayer,main}
+
+% style for blank nodes
+\tikzstyle{none}=[inner sep=0mm]
+
+\newcommand{\tikzfig}[1]{%
+{
+\IfFileExists{./figures/#1.tikz}
+    {\input{./figures/#1.tikz}}
+    {\tikz[baseline=-0.5em]{\node[draw=red,font=\color{red},fill=red!10!white] {\textit{#1}};}}
+}
+}
+
+\newcommand{\ctikzfig}[1]{
+\begin{center}\rm
+  \tikzfig{#1}
+\end{center}
+}
+
+% fix strange self-loops, which are PGF/TikZ default
+\tikzstyle{every loop}=[]
