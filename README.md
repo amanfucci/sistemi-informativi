@@ -1,1 +1,52 @@
 # sistemi-informativi
+- SQLAlchemy URI: `duckdb:////home/manfucci/github.com/amanfucci/sistemi-informativi/my_db.duckdb`
+
+Sviluppo in locale di una dashboard su trend ICT europei:
+- Tool
+    - Python+DuckDB
+    - [Apache Superset](https://superset.apache.org/)
+- OLAP
+    - visualizzazione grafica dei dati
+    - aggregazione geografica
+    - slicing interattivo
+    - visualizzazione eventuali correlazioni significative
+- Dati [ec](https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1)
+    - **ISOC_CISCE_RA(geo, unit, indic_is, freq, size_emp, nace_r2, TIME_PERIOD, value) x 8986 rows**
+        - *Security policy, measures, risks and staff awareness by size class of enterprise*
+        - geo: Country/region code
+        - unit: Measurement unit
+        - indic_is: Indicator
+        - freq: Frequency of observation (annual, biannual, etc.)
+        - size_emp: Enterprise size class (number of employees)
+        - nace_r2: Economic activity (NACE Rev.2 code)
+        - TIME_PERIOD: Reference year
+        - value
+    - **ISOC_CISCE_IC(geo, unit, indic_is, freq) x 33845 rows**
+        - *Security incidents and consequences by size class of enterprise*
+        - geo: Country/region code
+        - unit: Measurement unit
+        - indic_is: Indicator
+        - freq: Frequency of observation (annual, biannual, etc.)
+    - **ISOC_CISCI_PRV20(geo, unit, indic_is, ind_type, freq, TIME_PERIOD, value) x 265172 rows**
+        - *Privacy and protection of personal data (2020 onwards)*
+        - geo: Country/region code
+        - unit: Measurement unit
+        - indic_is: Indicator
+        - ind_type: Type of indicator (e.g., policy, technical measure)
+        - freq: Frequency of observation
+        - TIME_PERIOD: Reference year
+        - value
+    - **TIN00074(geo, freq, nace_r2, TIME_PERIOD, value) x 1200 rows**
+        - *Percentage of the ICT sector in Gross value added*
+        - geo: Country/region code
+        - freq: Frequency of observation (annual, biannual, etc.)
+        - nace_r2: Economic activity (NACE Rev.2 code)
+        - TIME_PERIOD: Reference year
+        - value: percentage of GVA
+    - **TIN00085(geo, freq, nace_r2, TIME_PERIOD, value) x 1146 rows**
+        - *Percentage of ICT sector personnel in total employment*
+        - geo: Country/region code
+        - freq: Frequency of observation (annual, biannual, etc.)
+        - nace_r2: Economic activity (NACE Rev.2 code)
+        - TIME_PERIOD: Reference year
+        - value: % of employment in ICT

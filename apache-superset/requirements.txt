@@ -1,0 +1,7 @@
+alembic==1.18.1
+pillow==11.3.0
+SQLAlchemy==1.4.54
+SQLAlchemy-Utils==0.38.3
+apache_superset==6.0.0
+duckdb==1.4.4
+duckdb-engine==0.17.0
