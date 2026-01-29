@@ -3,14 +3,15 @@
 
 Sviluppo in locale di una dashboard su trend ICT europei:
 - Tool
+    - SDMX API
     - Python+DuckDB
     - [Apache Superset](https://superset.apache.org/)
 - OLAP
     - visualizzazione grafica dei dati
     - aggregazione geografica
-    - slicing interattivo
+    - slicing temporale interattivo
     - visualizzazione eventuali correlazioni significative
-- Dati [ec](https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1)
+- Dati [Eurostat](https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1)
     - **ISOC_CISCE_RA(geo, unit, indic_is, freq, size_emp, nace_r2, TIME_PERIOD, value) x 8986 rows**
         - *Security policy, measures, risks and staff awareness by size class of enterprise*
         - geo: Country/region code

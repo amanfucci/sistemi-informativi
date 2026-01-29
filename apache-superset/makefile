@@ -1,46 +1,45 @@
-VENV_DIR := /home/manfucci/github.com/amanfucci/sistemi-informativi/apache-superset/venv
+include .env
+export
 PYTHON := $(VENV_DIR)/bin/python
 PIP := $(VENV_DIR)/bin/pip
 SUPERSET := $(VENV_DIR)/bin/superset
-SUPERSET_DB := /home/manfucci/.superset
-SECRET_KEY := not_a_secret
 ADMIN_USER := admin
 ADMIN_PASSWORD := admin
 
-.PHONY: all venv install load_examples init create-admin start clean
+.PHONY: all venv install init setup load_backup load_examples store_backup start clean_venv clean_all
 
-all: venv install init load_examples create-admin start
+all: venv install init setup start
 
 venv:
 	@test -d $(VENV_DIR) || python3 -m venv $(VENV_DIR)
 
 install: venv
-	$(PIP) install --upgrade pip setuptools wheel
+	$(PIP) install --upgrade pip setuptools wheel; \
 	$(PIP) install -r requirements.txt
 
-load_examples: init venv
-	@export FLASK_APP=superset; \
-	export SUPERSET_SECRET_KEY=$(SECRET_KEY); \
-	$(SUPERSET) db upgrade; \
-	$(SUPERSET) load_examples; \
-	$(SUPERSET) init
-
 init: venv
-	@export FLASK_APP=superset; \
-	export SUPERSET_SECRET_KEY=$(SECRET_KEY); \
 	$(SUPERSET) db upgrade; \
 	$(SUPERSET) init
 
-create-admin: init venv
-	@export FLASK_APP=superset; \
-	export SUPERSET_SECRET_KEY=$(SECRET_KEY); \
+setup: init venv
 	$(SUPERSET) fab create-admin --username $(ADMIN_USER) --firstname admin --lastname admin --email admin@admin.com --password $(ADMIN_PASSWORD)
 
-start: init venv
-	@export FLASK_APP=superset; \
-	export SUPERSET_SECRET_KEY=$(SECRET_KEY); \
-	$(SUPERSET) run -p 8088 --with-threads --reload --debugger
+load_examples: venv init
+	$(SUPERSET) load_examples;
 
-clean:
+load_backup: venv init
+	$(SUPERSET) fab create-admin --username $(ADMIN_USER) --firstname admin --lastname admin --email admin@admin.com --password $(ADMIN_PASSWORD)
+	$(SUPERSET) import-dashboards --dashboard-file $(SUPERSET_BACKUP);
+
+store_backup: venv init
+	$(SUPERSET) export-dashboards --dashboard-file $(SUPERSET_BACKUP);
+
+start: init venv
+	$(SUPERSET) run -p $(SUPERSET_PORT) --with-threads --reload --debugger
+
+clean_venv:
 	rm -rf $(VENV_DIR)
-	rm -rf $(SUPERSET_DB)
+
+clean_all:
+	rm -rf $(VENV_DIR)
+	rm -rf $(SUPERSET_HOME)

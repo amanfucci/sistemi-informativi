@@ -5,3 +5,5 @@ SQLAlchemy-Utils==0.38.3
 apache_superset==6.0.0
 duckdb==1.4.4
 duckdb-engine==0.17.0
+dotenv==0.9.9
+python-dotenv==1.2.1
