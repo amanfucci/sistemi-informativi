@@ -1,6 +1,4 @@
 # sistemi-informativi
-- SQLAlchemy URI: `duckdb:////home/manfucci/github.com/amanfucci/sistemi-informativi/my_db.duckdb`
-
 Sviluppo in locale di una dashboard su trend ICT europei:
 - Tool
     - SDMX API
