@@ -9,8 +9,9 @@ Sviluppo in locale di una dashboard su trend ICT europei:
     - aggregazione geografica
     - slicing temporale interattivo
     - visualizzazione eventuali correlazioni significative
-- Dati [Eurostat](https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1)
-- [DSD](http://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0/structure/datastructure/ESTAT/<id>/?compress=false)
+- Dati [Eurostat](https://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0)
+- [DSD Facts](http://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0/structure/datastructure/ESTAT/<id>/?compress=false)
+- [DSD Dimensions](https://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0/structure/codelist/ESTAT/<id>/?compress=false)
 
 # Fact Tables
 ## ISOC_CISCE_RA(41.0)
@@ -82,20 +83,20 @@ Sviluppo in locale di una dashboard su trend ICT europei:
 |nace_r2|enum/ESTAT:NACE_R2(17.0)|Economic activity|
 
 # Dimension Tables
-## ObservationalTimePeriod
-- ISO-8601 time forma
+## text/ObservationalTimePeriod
+- ISO-8601 time format
 
-## ESTAT:GEO(26.0)
+## enum/ESTAT:GEO(26.0)
 
-## ESTAT:FREQ(3.9)
+## enum/ESTAT:FREQ(3.9)
 - A (Annual), Q (Quarterly), M (Monthly)
 
-## ESTAT:UNIT(69.0)
+## enum/ESTAT:UNIT(69.0)
 
-## ESTAT:NACE_R2(17.0)
+## enum/ESTAT:NACE_R2(17.0)
 
-## ESTAT:INDIC_IS(25.2)
+## enum/ESTAT:INDIC_IS(25.2)
 
-## ESTAT:IND_TYPE(9.0)
+## enum/ESTAT:IND_TYPE(9.0)
 
-## ESTAT:SIZE_EMP(7.0)
+## enum/ESTAT:SIZE_EMP(7.0)
