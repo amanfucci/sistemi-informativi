@@ -144,11 +144,11 @@
 \setlength{\tabcolsep}{2pt}
 
 \title{Progetto Sistemi Informativi}
-\subtitle{Implementazione Dashboard OLAP}
+\subtitle{Implementazione Dashboard ROLAP}
 \author{Alessandro Manfucci}
 \date{09 Febbraio 2025}
 \institute{Università degli studi di Trento}
-\titlegraphic{\includegraphics[width=4cm]{marchio_unitrento_colore_it_202002.eps}}
+% \titlegraphic{\includegraphics[width=4cm]{marchio_unitrento_colore_it_202002.eps}}
 
 \begin{document}
 \SetKw{KwBreak}{break}
@@ -184,57 +184,179 @@
 
 % Section
 \renewcommand{\sectiontitle}{Strumenti}
-\section[Intro]{\sectiontitle}
+\section[Strument]{\sectiontitle}
 % \customToC{currentsection,hideothersubsections}{}
 
 % Frame
 \begin{frame}[t]{\sectiontitle}
-    \begin{itemize}
-        \itemj{}Progetto di Sistemi Informativi
-    \end{itemize}
+    \begin{multicols}{2}
+        \begin{itemize}
+            \itemj{} SDMX
+            \itemj{} Dataflows, Data Structure Definitions, Codelists
+            \itemj{} Apache Superset
+            \itemj{} Relational OLAP, query basate su aggregazione e pre-aggregazione
+        \end{itemize}
+        \columnbreak{}
+        \begin{center}
+            \includegraphics[width=0.2\textwidth]{tools.png}
+        \end{center}
+    \end{multicols}
 \end{frame}
 
 % Section
 \renewcommand{\sectiontitle}{Dati}
-\section[Intro]{\sectiontitle}
+\section[Dati]{\sectiontitle}
 % \customToC{currentsection,hideothersubsections}{}
 
-% Frame
 \begin{frame}[t]{\sectiontitle}
     \begin{itemize}
-        \itemj{}Progetto di Sistemi Informativi
+        \itemj{} Schema SDMX
+        \itemj{} Le gerarchie dimensionali sono espanse
+        \itemj{} La semantica della misura è una dimensione
+        \begin{itemize}
+            \itemj{} Pro: Nuove misure condividono lo stesso schema
+            \itemj{} Contro: Query meno intuitive
+        \end{itemize}
+        \itemj{} I dati considerati sono già aggregati
+        \begin{itemize}
+            \itemj{} macrodati, non microdati
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
-% Section
-\renewcommand{\sectiontitle}{Implementazione}
-\section[Intro]{\sectiontitle}
-% \customToC{currentsection,hideothersubsections}{}
+% Frame
+\begin{frame}[t]{Cybersecurity Policies}
+    \begin{multicols}{2}
+        \begin{itemize}
+            \itemj{} Le dimensioni sono:
+            \begin{itemize}
+                \itemj{} anno
+                \itemj{} nazione
+                \itemj{} policy sicurezza
+                \itemj{} grandezza dell'azienda
+            \end{itemize}
+            \itemj{} La misura è la percentuale di aziende con la policy di sicurezza rispetto ai microdati
+            \itemj{} $\text{(anno,nazione,policy,grandezza).value} = \frac{\text{(azienda,anno,nazione,policy,grandezza)}}{\text{(azienda,anno,nazione,*,grandezza)}}$
+            \itemj{} Il DFM dei microdati ha come dimensione l'azienda stessa e come misure booleane le policy
+        \end{itemize}
+        \columnbreak{}
+        \begin{center}
+            \includegraphics[width=0.4\textwidth]{isoc_cisce_ra.png}
+        \end{center}
+    \end{multicols}
+\end{frame}
 
 % Frame
-\begin{frame}[t]{\sectiontitle}
-    \begin{itemize}
-        \itemj{}Progetto di Sistemi Informativi
-    \end{itemize}
+\begin{frame}[t]{Cybersecurity Incidents}
+    \begin{multicols}{2}
+        \begin{itemize}
+            \itemj{} Le dimensioni sono:
+            \begin{itemize}
+                \itemj{} anno
+                \itemj{} nazione
+                \itemj{} incidente
+                \itemj{} grandezza dell'azienda
+            \end{itemize}
+            \itemj{} La misura è la percentuale di aziende che hanno subito l'incidente rispetto ai microdati
+            \itemj{} $\text{(anno,nazione,incidente,grandezza).value} = \frac{\text{(azienda,anno,nazione,incidente,grandezza)}}{\text{(azienda,anno,nazione,*,grandezza)}}$
+            \itemj{} Il DFM dei microdati ha come dimensione l'azienda stessa e come misure booleane gli incidenti
+        \end{itemize}
+        \columnbreak{}
+        \begin{center}
+            \includegraphics[width=0.4\textwidth]{isoc_cisce_ic.png}
+        \end{center}
+    \end{multicols}
+\end{frame}
+
+% Frame
+\begin{frame}[t]{Privacy Awareness}
+    \begin{multicols}{2}
+        \begin{itemize}
+            \itemj{} Le dimensioni sono:
+            \begin{itemize}
+                \itemj{} anno
+                \itemj{} nazione
+                \itemj{} awareness
+                \itemj{} classe
+            \end{itemize}
+            \itemj{} La misura è la percentuale di persone che hanno il livello di awareness rispetto ai microdati
+            \itemj{} $\text{(anno,nazione,awareness,classe).value} = \frac{\text{(persona,anno,nazione,awareness,classe)}}{\text{(persona,anno,nazione,*,classe)}}$
+        \end{itemize}
+        \columnbreak{}
+        \begin{center}
+            \includegraphics[width=0.4\textwidth]{isoc_cisci_prv20.png}
+        \end{center}
+    \end{multicols}
+\end{frame}
+
+% Frame
+\begin{frame}[t]{ICT in GVA}
+    \begin{multicols}{2}
+        \begin{itemize}
+            \itemj{} Le dimensioni sono: anno, nazione, classe economica nace
+            \itemj{} La misura è la percentuale del settore ICT sul GVA
+        \end{itemize}
+        \columnbreak{}
+        \begin{center}
+            \includegraphics[width=0.4\textwidth]{tin00074.png}
+        \end{center}
+    \end{multicols}
+\end{frame}
+
+% Frame
+\begin{frame}[t]{ICT personnel}
+    \begin{multicols}{2}
+        \begin{itemize}
+            \itemj{} Le dimensioni sono: anno, nazione, classe economica nace
+            \itemj{} La misura è la percentuale del personale ICT
+        \end{itemize}
+        \columnbreak{}
+        \begin{center}
+            \includegraphics[width=0.4\textwidth]{tin00085.png}
+        \end{center}
+    \end{multicols}
 \end{frame}
 
 % Section
-\renewcommand{\sectiontitle}{Correlazioni Significative}
-\section[Intro]{\sectiontitle}
+\renewcommand{\sectiontitle}{Dashboard}
+\section[Dashboard]{\sectiontitle}
 % \customToC{currentsection,hideothersubsections}{}
 
 % Frame
 \begin{frame}[t]{\sectiontitle}
+    \begin{center}
+        \includegraphics[width=1\textwidth]{dashboard1.jpg}
+    \end{center}
+\end{frame}
+
+% Frame
+\begin{frame}[t]{\sectiontitle}
+    \begin{center}
+        \includegraphics[width=1\textwidth]{dashboard2.jpg}
+    \end{center}
+\end{frame}
+
+% Frame
+\begin{frame}[t]{\sectiontitle}
+    \begin{center}
+        \includegraphics[width=1\textwidth]{dashboard3.jpg}
+    \end{center}
+\end{frame}
+
+% Frame
+\begin{frame}[t]{\sectiontitle}
     \begin{itemize}
-        \itemj{}Progetto di Sistemi Informativi
+        \itemj{} Slicing sulle dimensioni
+        \itemj{} Drill-down, Roll-up sulle gerarchie pre-aggregato
+        \itemj{} Non è possibile aggregare i macro-dati
     \end{itemize}
 \end{frame}
 
 % Bibliography
-\section[Refs]{References}
-\begin{frame}[t, allowframebreaks, noframenumbering]
-\frametitle{References}
-\bibliography{biblio}
-\end{frame}
+% \section[Refs]{References}
+% \begin{frame}[t, allowframebreaks, noframenumbering]
+% \frametitle{References}
+% \bibliography{biblio}
+% \end{frame}
 
 \end{document}
