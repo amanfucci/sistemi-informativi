@@ -13,10 +13,18 @@ Sviluppo in locale di una dashboard su trend ICT europei:
 - [DSD Facts](http://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0/structure/datastructure/ESTAT/<id>/?compress=false)
 - [DSD Dimensions](https://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0/structure/codelist/ESTAT/<id>/?compress=false)
 
-# Fact Tables
+# Fact
+- Observation-centric schema
+- Expanded dimensions hierarchies
+- Semantic meaning of measure is carried by dimension unit
+    - pros: new measures do not require schema changes
+    - cons: less friendly queries
+- Facts are already aggregated
+> What percentage has this indicator
+
 ## ISOC_CISCE_RA(41.0)
 > Security policy, measures, risks and staff awareness by size class of enterprise
-- (freq, size_emp, nace_r2, indic_is, unit, geo, TIME_PERIOD).value x 8986 rows
+- (freq, size_emp, nace_r2, indic_is, unit, geo, TIME_PERIOD, value) x 8986 rows
 - value : text/Double
 - unit
     - PC_ENT_IUSE: Percentage of enterprises where persons employed have access to the internet
@@ -42,7 +50,7 @@ Sviluppo in locale di una dashboard su trend ICT europei:
 
 ## ISOC_CISCE_IC(39.0)
 > Security incidents and consequences by size class of enterprise
-- (freq, size_emp, nace_r2, indic_is, unit, geo, TIME_PERIOD).value x 33845 rows
+- (freq, size_emp, nace_r2, indic_is, unit, geo, TIME_PERIOD, value) x 33845 rows
 - value : text/Double
 - unit
     - PC_ENT_CUSE: Percentage of the enterprises which use a computer
@@ -66,7 +74,7 @@ Sviluppo in locale di una dashboard su trend ICT europei:
 
 ## ISOC_CISCI_PRV20(42.0)
 > Privacy and protection of personal data (2020 onwards)
-- (freq, ind_type, indic_is, unit, geo, TIME_PERIOD).value x 265172 rows
+- (freq, ind_type, indic_is, unit, geo, TIME_PERIOD, value) x 265172 rows
 - value : text/Double
 - unit
     - PC_IND_IU3: Percentage of individuals who used internet in the last 3 months
@@ -86,7 +94,7 @@ Sviluppo in locale di una dashboard su trend ICT europei:
 |ind_type|enum/ESTAT:IND_TYPE(9.0)|Type of indicator|
 
 ## TIN00074(28.0)
-- (freq, nace_r2, geo, TIME_PERIOD).value x 1200 rows
+- (freq, nace_r2, geo, TIME_PERIOD, value) x 1200 rows
 - value : text/Double
     - Percentage of the ICT sector in Gross Value Added
 - TIME_PERIOD=2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023

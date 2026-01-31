@@ -1,8 +1,0 @@
-# SELECT DISTINCT nace_r2, label_en FROM tin00074 as t1 INNER JOIN nace_r2 as t2 on t1.nace_r2 = t2.code
-
-C_ICT
-ICT manufacturing
-ICT
-Information and Communication Technology - total
-G-U_ICT
-ICT services
