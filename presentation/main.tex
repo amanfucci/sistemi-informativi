@@ -220,7 +220,7 @@
         \itemj{} La semantica della misura è una dimensione
         \begin{itemize}
             \itemj{} Pro: Nuove misure condividono lo stesso schema
-            \itemj{} Contro: Query meno intuitive
+            \itemj{} Contro: Query con pivot
         \end{itemize}
         \itemj{} I dati considerati sono già aggregati
         \begin{itemize}
@@ -252,6 +252,22 @@
 \end{frame}
 
 % Frame
+\begin{frame}[t]{Cybersecurity Policies}
+    \begin{multicols}{2}
+        \begin{itemize}
+            \itemj{} E\_SECM:~Misure di sicurezza
+            \itemj{} E\_ICTSEC3:~ICT Interno o Esterno
+            \itemj{} E\_SECPREV:~Quanto è recente l'aggiornamento delle misure di sicurezza
+            \itemj{} E\_SEC\_AW:~Come il personale è istruito alla sicurezza
+        \end{itemize}
+        \columnbreak{}
+        \begin{center}
+            \includegraphics[width=0.4\textwidth]{isoc_cisce_ra_indic.png}
+        \end{center}
+    \end{multicols}
+\end{frame}
+
+% Frame
 \begin{frame}[t]{Cybersecurity Incidents}
     \begin{multicols}{2}
         \begin{itemize}
@@ -269,6 +285,25 @@
             $\frac{\sum_{\text{azienda}}\text{(azienda,anno,nazione,incidente,grandezza).indic}}{\sum_{\text{azienda}}\text{(azienda,anno,nazione,*,grandezza).indic}}$
         \begin{center}
             \includegraphics[width=0.4\textwidth]{isoc_cisce_ic.png}
+        \end{center}
+    \end{multicols}
+\end{frame}
+
+% Frame
+\begin{frame}[t]{Cybersecurity Incidents}
+    \begin{multicols}{2}
+        \begin{itemize}
+            \itemj{} E\_SEC2I:~Incidenti legati alla sicurezza
+            \begin{itemize}
+                \itemj{} USV:~Interruzione del servizio
+                \itemj{} DCD:~Perdita di dati
+                \itemj{} CNF:~Divulgazione di dati sensibili
+            \end{itemize}
+            \itemj{} E\_SECINS:~Incidenti coperti da assicurazione
+        \end{itemize}
+        \columnbreak{}
+        \begin{center}
+            \includegraphics[width=0.4\textwidth]{isoc_cisce_ic_indic.png}
         \end{center}
     \end{multicols}
 \end{frame}
@@ -294,6 +329,26 @@
     \begin{equation*}
         \text{(anno,nazione,awareness,classe).value} = \frac{\sum_{\text{persona}}\text{(persona,anno,nazione,awareness,classe).indic}}{\sum_{\text{persona}}\text{(persona,anno,nazione,*,classe).indic}}
     \end{equation*}
+\end{frame}
+
+% Frame
+\begin{frame}[t]{Privacy Awareness}
+    \begin{multicols}{2}
+        \begin{itemize}
+            \itemj{} I\_MAPS:~L'individuo gestisce l'accesso ai dati personali
+            \begin{itemize}
+                \itemj{} RPS:~Ha letto la privacy policy
+                \itemj{} RRGL:~Ha ristretto l'accesso alla posizione
+                \itemj{} LAP:~Ha limitato la condivisione di dati su social network o cloud
+                \itemj{} RAAD:~Ha rifiuto l'uso di cookie ai fini pubblicitari
+                \itemj{} CWSC:~Ha controllato che il sito fosse sicuro
+            \end{itemize}
+        \end{itemize}
+        \columnbreak{}
+        \begin{center}
+            \includegraphics[width=0.4\textwidth]{isoc_cisci_prv20_indic.png}
+        \end{center}
+    \end{multicols}
 \end{frame}
 
 % Frame
@@ -373,26 +428,13 @@
 
 % Frame
 \begin{frame}[t]{\sectiontitle}
-    \begin{itemize}
-        \itemj{} Slicing sulle dimensioni
-        \itemj{} Drill-down, Roll-up sulle gerarchie pre-aggregate
-        \itemj{} Non è possibile aggregare i macro-dati
-    \end{itemize}
+    \begin{center}
+        \includegraphics[width=1\textwidth]{dashboard4.jpg}
+    \end{center}
 \end{frame}
 
-% Section
-\renewcommand{\sectiontitle}{Trend}
-\section[Trend]{\sectiontitle}
-% \customToC{currentsection,hideothersubsections}{}
-
 % Frame
-\begin{frame}[t]{\sectiontitle}
-    \begin{itemize}
-        \itemj{} Il GVA ICT sale mantenendo stabile il personale ICT
-        \begin{itemize}
-            \itemj{} Aumento di produttività
-        \end{itemize}
-    \end{itemize}
+\begin{frame}[t]{Thanks!}
 \end{frame}
 
 % Bibliography
