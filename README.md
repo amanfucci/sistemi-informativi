@@ -34,7 +34,7 @@ Sviluppo in locale di una dashboard su trend ICT europei:
 - freq=A
 - nace_r2=C10-S951_X_K
 - size_emp: "Enterprises by size"
-- indic_is: "Security measures"
+- indic_is: "Security policies"
 
 |dimensions|representation|meaning|
 |---|---|---|

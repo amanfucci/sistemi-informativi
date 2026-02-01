@@ -134,9 +134,7 @@
 \newcommand{\customToC}[2]
 {
     \begin{frame}[noframenumbering]{Overview}
-        \begin{multicols}{2}
-            \tableofcontents[#1,#2]
-        \end{multicols}
+        \tableofcontents[#1,#2]
     \end{frame}
 }
 \newcommand{\sectiontitle}{}
@@ -192,13 +190,20 @@
     \begin{multicols}{2}
         \begin{itemize}
             \itemj{} SDMX
-            \itemj{} Dataflows, Data Structure Definitions, Codelists
+            \begin{itemize}
+                \itemj{} Dataflows
+                \itemj{} Data Structure Definitions
+                \itemj{} Codelists
+            \end{itemize}
             \itemj{} Apache Superset
-            \itemj{} Relational OLAP, query basate su aggregazione e pre-aggregazione
+            \begin{itemize}
+                \itemj{}Relational OLAP
+                \itemj{}Pre-Aggregazione
+            \end{itemize}
         \end{itemize}
         \columnbreak{}
         \begin{center}
-            \includegraphics[width=0.2\textwidth]{tools.png}
+            \includegraphics[width=0.3\textwidth]{tools.png}
         \end{center}
     \end{multicols}
 \end{frame}
@@ -209,8 +214,8 @@
 % \customToC{currentsection,hideothersubsections}{}
 
 \begin{frame}[t]{\sectiontitle}
+    Data Structure Definitions
     \begin{itemize}
-        \itemj{} Schema SDMX
         \itemj{} Le gerarchie dimensionali sono espanse
         \itemj{} La semantica della misura è una dimensione
         \begin{itemize}
@@ -219,7 +224,7 @@
         \end{itemize}
         \itemj{} I dati considerati sono già aggregati
         \begin{itemize}
-            \itemj{} macrodati, non microdati
+            \itemj{} macrodati
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -235,9 +240,9 @@
                 \itemj{} policy sicurezza
                 \itemj{} grandezza dell'azienda
             \end{itemize}
-            \itemj{} La misura è la percentuale di aziende con la policy di sicurezza rispetto ai microdati
-            \itemj{} $\text{(anno,nazione,policy,grandezza).value} = \frac{\text{(azienda,anno,nazione,policy,grandezza)}}{\text{(azienda,anno,nazione,*,grandezza)}}$
-            \itemj{} Il DFM dei microdati ha come dimensione l'azienda stessa e come misure booleane le policy
+            \itemj{} La misura è la percentuale di aziende del campione con la policy di sicurezza
+            $\text{(anno,nazione,policy,grandezza).value} =$\\
+            $\frac{\sum_{\text{azienda}}\text{(azienda,anno,nazione,policy,grandezza).indic}}{\sum_{\text{azienda}}\text{(azienda,anno,nazione,*,grandezza).indic}}$
         \end{itemize}
         \columnbreak{}
         \begin{center}
@@ -257,11 +262,11 @@
                 \itemj{} incidente
                 \itemj{} grandezza dell'azienda
             \end{itemize}
-            \itemj{} La misura è la percentuale di aziende che hanno subito l'incidente rispetto ai microdati
-            \itemj{} $\text{(anno,nazione,incidente,grandezza).value} = \frac{\text{(azienda,anno,nazione,incidente,grandezza)}}{\text{(azienda,anno,nazione,*,grandezza)}}$
-            \itemj{} Il DFM dei microdati ha come dimensione l'azienda stessa e come misure booleane gli incidenti
+            \itemj{} La misura è la percentuale di aziende del campione che hanno subito l'incidente
         \end{itemize}
         \columnbreak{}
+            $\text{(anno,nazione,incidente,grandezza).value} = $\\
+            $\frac{\sum_{\text{azienda}}\text{(azienda,anno,nazione,incidente,grandezza).indic}}{\sum_{\text{azienda}}\text{(azienda,anno,nazione,*,grandezza).indic}}$
         \begin{center}
             \includegraphics[width=0.4\textwidth]{isoc_cisce_ic.png}
         \end{center}
@@ -279,42 +284,65 @@
                 \itemj{} awareness
                 \itemj{} classe
             \end{itemize}
-            \itemj{} La misura è la percentuale di persone che hanno il livello di awareness rispetto ai microdati
-            \itemj{} $\text{(anno,nazione,awareness,classe).value} = \frac{\text{(persona,anno,nazione,awareness,classe)}}{\text{(persona,anno,nazione,*,classe)}}$
+            \itemj{} La misura è la percentuale di persone del campione che hanno il livello di awareness
         \end{itemize}
         \columnbreak{}
         \begin{center}
             \includegraphics[width=0.4\textwidth]{isoc_cisci_prv20.png}
         \end{center}
     \end{multicols}
+    \begin{equation*}
+        \text{(anno,nazione,awareness,classe).value} = \frac{\sum_{\text{persona}}\text{(persona,anno,nazione,awareness,classe).indic}}{\sum_{\text{persona}}\text{(persona,anno,nazione,*,classe).indic}}
+    \end{equation*}
 \end{frame}
 
 % Frame
 \begin{frame}[t]{ICT in GVA}
     \begin{multicols}{2}
         \begin{itemize}
-            \itemj{} Le dimensioni sono: anno, nazione, classe economica nace
+            \itemj{} Le dimensioni sono:
+            \begin{itemize}
+                \itemj{} anno
+                \itemj{} nazione
+                \itemj{} classe economica nace
+            \end{itemize}
             \itemj{} La misura è la percentuale del settore ICT sul GVA
+            \begin{itemize}
+                \itemj{} Fino al 2020: GVA factor cost
+                \itemj{} Dal 2021: GVA basic prices
+            \end{itemize}
         \end{itemize}
         \columnbreak{}
         \begin{center}
             \includegraphics[width=0.4\textwidth]{tin00074.png}
         \end{center}
     \end{multicols}
+    \begin{equation*}
+        \text{(anno,nazione,nace ict).value} = \frac{\text{(anno,nazione,nace ict).gva}}{\text{(anno,nazione,*).gva}}
+    \end{equation*}
 \end{frame}
 
 % Frame
 \begin{frame}[t]{ICT personnel}
     \begin{multicols}{2}
         \begin{itemize}
-            \itemj{} Le dimensioni sono: anno, nazione, classe economica nace
+            \itemj{} Le dimensioni sono:
+            \begin{itemize}
+                \itemj{} anno
+                \itemj{} nazione
+                \itemj{} classe economica nace
+            \end{itemize}
             \itemj{} La misura è la percentuale del personale ICT
+            \itemj{} È una misura basata sul settore, non sull'occupazione
         \end{itemize}
         \columnbreak{}
         \begin{center}
             \includegraphics[width=0.4\textwidth]{tin00085.png}
         \end{center}
     \end{multicols}
+    \begin{equation*}
+        \text{(anno,nazione,nace ict).value} = \frac{\text{(anno,nazione,nace ict).personnel}}{\text{(anno,nazione,*).personnel}}
+    \end{equation*}
 \end{frame}
 
 % Section
@@ -347,8 +375,23 @@
 \begin{frame}[t]{\sectiontitle}
     \begin{itemize}
         \itemj{} Slicing sulle dimensioni
-        \itemj{} Drill-down, Roll-up sulle gerarchie pre-aggregato
+        \itemj{} Drill-down, Roll-up sulle gerarchie pre-aggregate
         \itemj{} Non è possibile aggregare i macro-dati
+    \end{itemize}
+\end{frame}
+
+% Section
+\renewcommand{\sectiontitle}{Trend}
+\section[Trend]{\sectiontitle}
+% \customToC{currentsection,hideothersubsections}{}
+
+% Frame
+\begin{frame}[t]{\sectiontitle}
+    \begin{itemize}
+        \itemj{} Il GVA ICT sale mantenendo stabile il personale ICT
+        \begin{itemize}
+            \itemj{} Aumento di produttività
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
