@@ -189,16 +189,17 @@
 \begin{frame}[t]{\sectiontitle}
     \begin{multicols}{2}
         \begin{itemize}
-            \itemj{} SDMX
+            \itemj{}SDMX
             \begin{itemize}
-                \itemj{} Dataflows
-                \itemj{} Data Structure Definitions
-                \itemj{} Codelists
+                \itemj{}Dataflows: Facts
+                \itemj{}Data Structure Definitions: Fact Schemas
+                \itemj{}Codelists: Enum domains (misure, dimensioni)
             \end{itemize}
-            \itemj{} Apache Superset
+            \itemj{}Apache Superset: ROLAP
             \begin{itemize}
-                \itemj{}Relational OLAP
-                \itemj{}Pre-Aggregazione
+                \itemj{}Pivot righe-colonne
+                \itemj{}Slice, Dice come filtri
+                \itemj{}Drill-Down/Roll-up richiedono Pre-Aggregazione
             \end{itemize}
         \end{itemize}
         \columnbreak{}
@@ -213,36 +214,36 @@
 \section[Dati]{\sectiontitle}
 % \customToC{currentsection,hideothersubsections}{}
 
-\begin{frame}[t]{\sectiontitle}
-    Data Structure Definitions
-    \begin{itemize}
-        \itemj{} Le gerarchie dimensionali sono espanse
-        \itemj{} La semantica della misura è una dimensione
-        \begin{itemize}
-            \itemj{} Pro: Nuove misure condividono lo stesso schema
-            \itemj{} Contro: Query con pivot
-        \end{itemize}
-        \itemj{} I dati considerati sono già aggregati
-        \begin{itemize}
-            \itemj{} macrodati
-        \end{itemize}
-    \end{itemize}
+% Frame
+\begin{frame}[t]{Microdati vs Macrodati}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{micro-to-macro-dfm.png}
+    \end{center}
 \end{frame}
 
 % Frame
-\begin{frame}[t]{Cybersecurity Policies}
+\begin{frame}[t]{Microdati vs Macrodati}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{micro-to-macro-tabelle.png}
+    \end{center}
+\end{frame}
+
+% Subsection
+\renewcommand{\subsectiontitle}{Cybersecurity Policies}
+\subsection[Policies]{\subsectiontitle}
+% \customToC{currentsection,hideothersubsections}{}
+
+% Frame
+\begin{frame}[t]{\subsectiontitle}
     \begin{multicols}{2}
         \begin{itemize}
-            \itemj{} Le dimensioni sono:
+            \itemj{}Le dimensioni sono:
             \begin{itemize}
-                \itemj{} anno
-                \itemj{} nazione
-                \itemj{} policy sicurezza
-                \itemj{} grandezza dell'azienda
+                \itemj{}anno
+                \itemj{}nazione
+                \itemj{}grandezza dell'azienda
             \end{itemize}
-            \itemj{} La misura è la percentuale di aziende del campione con la policy di sicurezza
-            $\text{(anno,nazione,policy,grandezza).value} =$\\
-            $\frac{\sum_{\text{azienda}}\text{(azienda,anno,nazione,policy,grandezza).indic}}{\sum_{\text{azienda}}\text{(azienda,anno,nazione,*,grandezza).indic}}$
+            \itemj{}Per ciascun indicatore, la misura è una stima percentuale della quota di imprese della popolazione che soddisfano la condizione dell'indicatore
         \end{itemize}
         \columnbreak{}
         \begin{center}
@@ -252,13 +253,14 @@
 \end{frame}
 
 % Frame
-\begin{frame}[t]{Cybersecurity Policies}
+\begin{frame}[t]{\subsectiontitle}
     \begin{multicols}{2}
+        Granularità indicatori
         \begin{itemize}
-            \itemj{} E\_SECM:~Misure di sicurezza
-            \itemj{} E\_ICTSEC3:~ICT Interno o Esterno
-            \itemj{} E\_SECPREV:~Quanto è recente l'aggiornamento delle misure di sicurezza
-            \itemj{} E\_SEC\_AW:~Come il personale è istruito alla sicurezza
+            \itemj{}E\_SECM:~Misure di sicurezza
+            \itemj{}E\_ICTSEC3:~ICT Interno o Esterno
+            \itemj{}E\_SECPREV:~Quanto è recente l'aggiornamento delle misure di sicurezza
+            \itemj{}E\_SEC\_AW:~Come il personale è istruito alla sicurezza
         \end{itemize}
         \columnbreak{}
         \begin{center}
@@ -267,46 +269,42 @@
     \end{multicols}
 \end{frame}
 
-% Frame
-\begin{frame}[t]{}
-    \begin{center}
-        \includegraphics[width=1\textwidth]{micro-to-macro.png}
-    \end{center}
-\end{frame}
+% Subsection
+\renewcommand{\subsectiontitle}{Cybersecurity Incidents}
+\subsection[Incidents]{\subsectiontitle}
+% \customToC{currentsection,hideothersubsections}{}
 
 % Frame
-\begin{frame}[t]{Cybersecurity Incidents}
+\begin{frame}[t]{\subsectiontitle}
     \begin{multicols}{2}
         \begin{itemize}
-            \itemj{} Le dimensioni sono:
+            \itemj{}Le dimensioni sono:
             \begin{itemize}
-                \itemj{} anno
-                \itemj{} nazione
-                \itemj{} incidente
-                \itemj{} grandezza dell'azienda
+                \itemj{}anno
+                \itemj{}nazione
+                \itemj{}grandezza dell'azienda
             \end{itemize}
-            \itemj{} La misura è la percentuale di aziende del campione che hanno subito l'incidente
-        \end{itemize}
+            \itemj{}Per ciascun indicatore, la misura è una stima percentuale della quota di imprese della popolazione che soddisfano la condizione dell'indicatore
+       \end{itemize}
         \columnbreak{}
-            $\text{(anno,nazione,incidente,grandezza).value} = $\\
-            $\frac{\sum_{\text{azienda}}\text{(azienda,anno,nazione,incidente,grandezza).indic}}{\sum_{\text{azienda}}\text{(azienda,anno,nazione,*,grandezza).indic}}$
-        \begin{center}
+            \begin{center}
             \includegraphics[width=0.4\textwidth]{isoc_cisce_ic.png}
         \end{center}
     \end{multicols}
 \end{frame}
 
 % Frame
-\begin{frame}[t]{Cybersecurity Incidents}
+\begin{frame}[t]{\subsectiontitle}
     \begin{multicols}{2}
+        Granularità indicatori
         \begin{itemize}
-            \itemj{} E\_SEC2I:~Incidenti legati alla sicurezza
+            \itemj{}E\_SEC2I:~Incidenti legati alla sicurezza
             \begin{itemize}
-                \itemj{} USV:~Interruzione del servizio
-                \itemj{} DCD:~Perdita di dati
-                \itemj{} CNF:~Divulgazione di dati sensibili
+                \itemj{}USV:~Interruzione del servizio
+                \itemj{}DCD:~Perdita di dati
+                \itemj{}CNF:~Divulgazione di dati sensibili
             \end{itemize}
-            \itemj{} E\_SECINS:~Incidenti coperti da assicurazione
+            \itemj{}E\_SECINS:~Incidenti coperti da assicurazione
         \end{itemize}
         \columnbreak{}
         \begin{center}
@@ -315,40 +313,42 @@
     \end{multicols}
 \end{frame}
 
+% Subsection
+\renewcommand{\subsectiontitle}{Privacy Awareness}
+\subsection[Awareness]{\subsectiontitle}
+% \customToC{currentsection,hideothersubsections}{}
+
 % Frame
-\begin{frame}[t]{Privacy Awareness}
+\begin{frame}[t]{\subsectiontitle}
     \begin{multicols}{2}
         \begin{itemize}
-            \itemj{} Le dimensioni sono:
+            \itemj{}Le dimensioni sono:
             \begin{itemize}
-                \itemj{} anno
-                \itemj{} nazione
-                \itemj{} awareness
-                \itemj{} classe
+                \itemj{}anno
+                \itemj{}nazione
+                \itemj{}classe
             \end{itemize}
-            \itemj{} La misura è la percentuale di persone del campione che hanno il livello di awareness
+            \itemj{}Per ciascun indicatore, la misura è una stima percentuale della quota di individui della popolazione che soddisfano la condizione dell'indicatore
         \end{itemize}
         \columnbreak{}
         \begin{center}
             \includegraphics[width=0.4\textwidth]{isoc_cisci_prv20.png}
         \end{center}
     \end{multicols}
-    \begin{equation*}
-        \text{(anno,nazione,awareness,classe).value} = \frac{\sum_{\text{persona}}\text{(persona,anno,nazione,awareness,classe).indic}}{\sum_{\text{persona}}\text{(persona,anno,nazione,*,classe).indic}}
-    \end{equation*}
 \end{frame}
 
 % Frame
-\begin{frame}[t]{Privacy Awareness}
+\begin{frame}[t]{\subsectiontitle}
     \begin{multicols}{2}
+        Granularità indicatori
         \begin{itemize}
-            \itemj{} I\_MAPS:~L'individuo gestisce l'accesso ai dati personali
+            \itemj{}I\_MAPS:~L'individuo gestisce l'accesso ai dati personali
             \begin{itemize}
-                \itemj{} RPS:~Ha letto la privacy policy
-                \itemj{} RRGL:~Ha ristretto l'accesso alla posizione
-                \itemj{} LAP:~Ha limitato la condivisione di dati su social network o cloud
-                \itemj{} RAAD:~Ha rifiuto l'uso di cookie ai fini pubblicitari
-                \itemj{} CWSC:~Ha controllato che il sito fosse sicuro
+                \itemj{}RPS:~Ha letto la privacy policy
+                \itemj{}RRGL:~Ha ristretto l'accesso alla posizione
+                \itemj{}LAP:~Ha limitato la condivisione di dati su social network o cloud
+                \itemj{}RAAD:~Ha rifiuto l'uso di cookie ai fini pubblicitari
+                \itemj{}CWSC:~Ha controllato che il sito fosse sicuro
             \end{itemize}
         \end{itemize}
         \columnbreak{}
@@ -358,20 +358,25 @@
     \end{multicols}
 \end{frame}
 
+% Subsection
+\renewcommand{\subsectiontitle}{ICT GVA}
+\subsection[ICT GVA]{\subsectiontitle}
+% \customToC{currentsection,hideothersubsections}{}
+
 % Frame
-\begin{frame}[t]{ICT in GVA}
+\begin{frame}[t]{\subsectiontitle}
     \begin{multicols}{2}
         \begin{itemize}
-            \itemj{} Le dimensioni sono:
+            \itemj{}Le dimensioni sono:
             \begin{itemize}
-                \itemj{} anno
-                \itemj{} nazione
-                \itemj{} classe economica nace
+                \itemj{}anno
+                \itemj{}nazione
+                \itemj{}classe economica nace
             \end{itemize}
-            \itemj{} La misura è la percentuale del settore ICT sul GVA
+            \itemj{}La misura è la percentuale del settore ICT sul GVA totale delle aziende nella popolazione
             \begin{itemize}
-                \itemj{} Fino al 2020: GVA factor cost
-                \itemj{} Dal 2021: GVA basic prices
+                \itemj{}Fino al 2020: GVA factor cost
+                \itemj{}Dal 2021: GVA basic prices
             \end{itemize}
         \end{itemize}
         \columnbreak{}
@@ -379,32 +384,31 @@
             \includegraphics[width=0.4\textwidth]{tin00074.png}
         \end{center}
     \end{multicols}
-    \begin{equation*}
-        \text{(anno,nazione,nace ict).value} = \frac{\text{(anno,nazione,nace ict).gva}}{\text{(anno,nazione,*).gva}}
-    \end{equation*}
 \end{frame}
 
+% Subsection
+\renewcommand{\subsectiontitle}{ICT Personnel}
+\subsection[ICT Personnel]{\subsectiontitle}
+% \customToC{currentsection,hideothersubsections}{}
+
 % Frame
-\begin{frame}[t]{ICT personnel}
+\begin{frame}[t]{\subsectiontitle}
     \begin{multicols}{2}
         \begin{itemize}
-            \itemj{} Le dimensioni sono:
+            \itemj{}Le dimensioni sono:
             \begin{itemize}
-                \itemj{} anno
-                \itemj{} nazione
-                \itemj{} classe economica nace
+                \itemj{}anno
+                \itemj{}nazione
+                \itemj{}classe economica nace
             \end{itemize}
-            \itemj{} La misura è la percentuale del personale ICT
-            \itemj{} È una misura basata sul settore, non sull'occupazione
+            \itemj{}La misura è la percentuale del personale ICT rispetto al personale totale delle aziende nella popolazione
+            \itemj{}Il personale è classificato sul settore, non sull'occupazione
         \end{itemize}
         \columnbreak{}
         \begin{center}
             \includegraphics[width=0.4\textwidth]{tin00085.png}
         \end{center}
     \end{multicols}
-    \begin{equation*}
-        \text{(anno,nazione,nace ict).value} = \frac{\text{(anno,nazione,nace ict).personnel}}{\text{(anno,nazione,*).personnel}}
-    \end{equation*}
 \end{frame}
 
 % Section
