@@ -9,9 +9,18 @@ Sviluppo in locale di una dashboard su trend ICT europei:
     - aggregazione geografica
     - slicing temporale interattivo
     - visualizzazione eventuali correlazioni significative
-- Dati [Eurostat](https://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0)
-- [DSD Facts](http://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0/structure/datastructure/ESTAT/<id>/?compress=false)
-- [DSD Dimensions](https://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0/structure/codelist/ESTAT/<id>/?compress=false)
+- Dati
+    - [TIN00074](https://ec.europa.eu/eurostat/databrowser/view/tin00074/default/table?lang=en)
+    - [TIN00085](https://ec.europa.eu/eurostat/databrowser/view/TIN00085/default/table?lang=en)
+    - [ISOC_CISCE_RA](https://ec.europa.eu/eurostat/databrowser/view/isoc_cisce_ra/default/table?lang=en)
+    - [ISOC_CISCE_IC](https://ec.europa.eu/eurostat/databrowser/view/isoc_cisce_ic/default/table?lang=en)
+    - [ISOC_CISCI_PRV20](https://ec.europa.eu/eurostat/databrowser/view/isoc_cisci_prv20/default/table?lang=en)
+# SDMX
+- https://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0
+- DSD Facts uri
+- http://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0/structure/datastructure/ESTAT/WRITEIDHERE/?compress=false
+- DSD Dimensions URI
+- https://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0/structure/codelist/ESTAT/WRITEIDHERE/?compress=false
 
 # Fact
 - SDMX Schema
